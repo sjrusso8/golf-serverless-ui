@@ -53,25 +53,45 @@
           </button>
         </div>
       </form>
-      <div v-if="errorMessage">Wrong credentials entered! Please try again</div>
+      <!-- <div v-if="errorMessage">Wrong credentials entered! Please try again</div> -->
     </div>
   </div>
 </template>
 
 <script>
-// import userAuth from "@/common/auth.js";
-import { ref, reactive } from "vue";
-
+import * as types from "@/store/modules/auth/mutation-types";
 export default {
-  setup() {
-    let errorMessage = ref('');
-    let credentials = reactive({
-      email: "",
-      password: "",
-    });
+  data() {
+    return {
+      credentials: {
+        email: "",
+        password: "",
+      },
+      errorMessage: false,
+    };
+  },
+  methods: {
+    submit() {
+      let credential = {
+        email: this.credentials.email,
+        password: this.credentials.password,
+      };
+      let redirect = decodeURIComponent(this.$route.query.redirect || "/");
+      console.log(redirect);
 
-    
-    return { errorMessage, credentials }
-  }
+      this.$store
+        .dispatch(types.LOGIN, {
+          credential: credential,
+        })
+        .then(() => {
+          this.errorMessage = false;
+          this.$router.push(redirect);
+        })
+        .catch((err) => {
+          this.errorMessage = true;
+          console.log(err);
+        });
+    },
+  },
 };
 </script>

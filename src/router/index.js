@@ -16,6 +16,7 @@ const routes = [
   },
   {
     path: "/",
+    redirect: { name: 'Dashboard' },
     component: DefaultLayout,
     children: [
       {
