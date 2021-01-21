@@ -32,10 +32,11 @@ const routes = [
         meta: { title: "Courses", icon: "course", affix: true }
       },
       {
-        path: "course-details",
+        path: "course-details/:id/:course/:city",
         component: () => import("@/views/Course/CourseDetails.vue"),
         name: "Course Details",
-        meta: { title: "Course Details", icon: "course", affix: true }
+        props: true,
+        meta: { title: "Course Details", icon: "course", affix: true}
       },
       {
         path: "practice",

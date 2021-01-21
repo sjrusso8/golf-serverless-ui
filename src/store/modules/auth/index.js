@@ -4,7 +4,6 @@ import * as types from "./mutation-types";
 import { backendBase } from "@/common/backendAPI.js";
 
 const LOGIN_URL = "token/";
-const USER_URL = "users/";
 
 const state = () => ({
     accessToken: localStorage.getItem("access_token") || null,
@@ -16,6 +15,12 @@ const state = () => ({
 const getters = {
     GET_userEmail(state) {
         return state.user.email;
+    },
+    GET_accessToken(state) {
+        return state.accessToken;
+    },
+    GET_userDetails(state) {
+        return state.userDetails;
     }
 };
 
@@ -79,15 +84,9 @@ const actions = {
                 console.log(err, "Error in Refresh Token");
             });
     },
-    async getUserDetails({ commit }, payload) {
-        return backendBase
-            .get(USER_URL + payload)
-            .then(response => {
-                commit("SET_userDetails", response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+    getUserDetails({ commit }, payload) {
+        console.log(payload)
+        return commit("SET_userDetails", payload);
     }
 };
 

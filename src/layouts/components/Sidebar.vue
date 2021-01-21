@@ -10,7 +10,7 @@
       </div>
       <div class="flex items-center h-20 bg-hero-blue-300">
         <div class="w-12 h-12 m-2 rounded-full ring-2 ring-white" style="background-image: url(https://picsum.photos/100/100)"></div>
-        <div class="text-md text-white tracking-wide text-sm font-bold ">User Name</div>
+        <div class="text-md text-white tracking-wide text-sm font-bold ">{{ user.first_name }} {{ user.last_name }}</div>
       </div>
       <div class="">
         <ul class="w-auto list-none">
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { ref } from "vue";
 
 export default {
@@ -61,6 +62,26 @@ export default {
     let isOpen = ref(false)
 
     return { isOpen }
-  }
+  },
+  data() {
+    return {
+      user: {}
+    }
+
+  },
+  methods: {
+    getUserDetails() {
+      // console.log(this.GET_userDetails)
+      this.user = this.GET_userDetails
+    }
+  },
+  computed: {
+        ...mapGetters([
+            'GET_userDetails',
+        ])
+    },
+  mounted() {
+        this.getUserDetails()
+    }
 }
 </script>

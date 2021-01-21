@@ -110,3 +110,47 @@
 		</div> 
     </div>
 </template>
+<script>
+import { mapGetters } from "vuex";
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            practiceData: []
+        }
+    },
+    methods: {
+        async userPractice() {
+
+        const config = {
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.GET_accessToken}` }
+            };       
+
+        return axios
+            .get(
+                process.env.VUE_APP_API_BASE + "users_practice",
+                config
+                )
+            .then(response => {
+                console.log(response.data.results)
+                this.practiceData = response.data.results
+                }
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'GET_accessToken',
+        ])
+    },
+    mounted() {
+        this.userPractice()
+    }
+}
+</script>

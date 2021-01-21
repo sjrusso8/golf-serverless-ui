@@ -6,7 +6,7 @@
                 <div class="flex justify-between">
                     <!-- Welcome -->
                     <div class="flex-1 flex-col items-center justify-between h-16 p-12 text-white">
-                        <p class="text-2xl pb-2">Welcome, <span class="text-2xl font-bold tracking-wide">Tiger Woods</span> </p>
+                        <p class="text-2xl pb-2">Welcome, <span class="text-2xl font-bold tracking-wide">{{ user.first_name }} {{ user.last_name }}</span> </p>
                         <p class="text-sm"> How does the game feel today? </p>
                     </div>
                     <!-- Quick Facts -->
@@ -27,7 +27,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <p class="px-1 text-ml"> Local Temp</p>
+                                <p class="px-1 text-ml"> {{ user.hometown }} Temp</p>
                             </div>
                         </div>
                     </div>
@@ -123,3 +123,64 @@
         </div>       
     </div>
 </template>
+
+<script>
+import { mapGetters } from "vuex";
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            user: {
+                first_name: "",
+                last_name: "",
+                gender: "",
+                bio: "",
+                hometown: "",
+                following: ""
+            }
+        }
+    },
+    methods: {
+        normalizeUser(user) {
+            this.user.first_name = user.first_name
+            this.user.last_name = user.last_name
+            this.user.gender = user.gender
+            this.user.bio = user.bio
+            this.user.hometown = user.hometown
+            this.user.following = user.following
+        },
+        async userDetails() {
+
+        const config = {
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.GET_accessToken}` }
+            };       
+
+        return axios
+            .get(
+                process.env.VUE_APP_API_BASE + "profiles",
+                config
+                )
+            .then(response => {
+                console.log(response.data.results)
+                this.normalizeUser(response.data.results[0])
+                this.$store.dispatch('getUserDetails', this.user)
+                }
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'GET_accessToken',
+        ])
+    },
+    mounted() {
+        this.userDetails()
+    }
+}
+</script>
