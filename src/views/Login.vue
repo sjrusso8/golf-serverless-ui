@@ -78,7 +78,6 @@ export default {
         password: this.credentials.password,
       };
       let redirect = decodeURIComponent(this.$route.query.redirect || "/");
-      console.log(redirect);
 
       this.$store
         .dispatch(types.LOGIN, {

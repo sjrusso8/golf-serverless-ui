@@ -11,43 +11,19 @@
             <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Statistics</h3>
         </div>
         <div class="flex flex-wrap -mx-1 overflow-hidden p-4">
-            <div class="md:w-1/5 h-18 rounded-l-lg border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
+            <div class="md:w-1/2 h-18 rounded-l-lg border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
                 <div class="p-2 text-center">
                     <div class="pr-2">
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Farthest Distance</p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 72.5 </p>
+                        <p class="text-lg font-bold text-green-800 dark:text-gray-200"> {{ summaryStats.farthestDistance }}  </p>
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/5 h-18 border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
+            <div class="md:w-1/2 h-18 border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
                 <div class="p-2 text-center">
                     <div class="pr-2">
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Fastest Club Head Speed</p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 72.5 </p>
-                    </div>
-                </div>
-            </div>
-            <div class="md:w-1/5 h-18 border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                <div class="p-2 text-center">
-                    <div class="pr-2">
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Avg Club Factor</p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 72.5 </p>
-                    </div>
-                </div>
-            </div>
-            <div class="md:w-1/5 h-18 border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                <div class="p-2 text-center">
-                    <div class="pr-2">
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Avg Smash Shape</p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 72.5 </p>
-                    </div>
-                </div>
-            </div>
-            <div class="md:w-1/5 h-18 rounded-r-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                <div class="p-2 text-center">
-                    <div class="pr-2">
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Avg Shot Shape</p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 72.5 </p>
+                        <p class="text-lg font-bold text-green-800 dark:text-gray-200"> {{ summaryStats.fastestClubHead }} </p>
                     </div>
                 </div>
             </div>
@@ -70,39 +46,39 @@
 					</tr>
 				</thead>
 				<tbody>
-                    <tr class="py-2">
+                    <tr v-for="practice in practiceData" :key="practice.id"  class="py-2">
                         <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Date</span>
+                            <span class="text-gray-700 px-6 py-3">{{ new Date(practice.created_at).toLocaleDateString("en-US") }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Club</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 font-bold">{{ practice.club }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Carry</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.carry }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Disance</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.total }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Swing Speed</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.swing_speed }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Ball Speed</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.ball_speed }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Launch Angle</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.launch_angle }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Smash Factor</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.smash_factor }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Apex</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.apex }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Sping Rate</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.spin_rate }}</span>
                         </td>
-                        <td class="border-solid border-t border-gray-200 py-2">
-                            <span class="text-gray-700 px-6 py-3">Shot Shape</span>
+                        <td class="text-center border-solid border-t border-gray-200 py-2">
+                            <span class="text-sm text-gray-700 px-6 py-3">{{ practice.shot_shape }}</span>
                         </td>
                     </tr>
 				</tbody>
@@ -117,10 +93,20 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            practiceData: []
+            practiceData: [],
+            summaryStats: {
+                farthestDistance: 0,
+                fastestClubHead: 0,
+                avgSmashFactor: 0,
+            },
         }
     },
     methods: {
+        getSummary(){
+            this.summaryStats.farthestDistance = Math.max(...this.practiceData.map(data => data.total), 0);
+            this.summaryStats.fastestClubHead = Math.max(...this.practiceData.map(data => data.swing_speed), 0);
+            this.summaryStats.avgSmashFactor = this.practiceData.reduce(( a, b ) => a.swing_speed + b.swing_speed)
+        },
         async userPractice() {
 
         const config = {
@@ -137,6 +123,7 @@ export default {
             .then(response => {
                 console.log(response.data.results)
                 this.practiceData = response.data.results
+                this.getSummary()
                 }
             )
             .catch(e => {

@@ -164,7 +164,6 @@ export default {
                 config
                 )
             .then(response => {
-                console.log(response.data.results)
                 this.normalizeUser(response.data.results[0])
                 this.$store.dispatch('getUserDetails', this.user)
                 }

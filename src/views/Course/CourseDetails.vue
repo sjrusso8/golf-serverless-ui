@@ -4,8 +4,21 @@
         <div class="h-32">
             <div class="bg-cover bg-hero-pattern w-full h-full"></div>
         </div>
-        Course Details 
-        <p>{{ courseData }}</p>
+        <div class="flex flex-row justify-between bg-white w-full p-4">
+            <div>
+                <h2 class="text-xl font-bold tracking-wide">{{ courseData.name }}</h2>
+                <p class="capitalize ">{{ courseData.address }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-blue-800">{{ courseData.website }}</p>
+                <p class="text-sm">{{ courseData.phone }}</p>
+            </div>
+        </div>
+        <div class="bg-white w-full p-4 mt-2">
+            <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Scorecard</h3>
+        </div>
+        <p>{{ courseData.tees }}</p>
+        <p>{{ courseData.gps_holes }}</p>
     </div>
 </template>
 <script>

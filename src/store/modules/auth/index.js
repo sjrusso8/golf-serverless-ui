@@ -60,7 +60,7 @@ const actions = {
                         atob(response.data.access.split(".")[1])
                     );
                     loginPayload.user.authenticated = true;
-                    console.log("Login Payload", loginPayload);
+                    // console.log("Login Payload", loginPayload);
                     commit(types.LOGIN, loginPayload);
                 }
             })
@@ -85,7 +85,7 @@ const actions = {
             });
     },
     getUserDetails({ commit }, payload) {
-        console.log(payload)
+        // console.log(payload)
         return commit("SET_userDetails", payload);
     }
 };
