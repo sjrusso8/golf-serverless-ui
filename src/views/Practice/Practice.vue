@@ -121,7 +121,6 @@ export default {
                 config
                 )
             .then(response => {
-                console.log(response.data.results)
                 this.practiceData = response.data.results
                 this.getSummary()
                 }

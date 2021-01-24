@@ -13,8 +13,8 @@ const state = () => ({
 });
 
 const getters = {
-    GET_userEmail(state) {
-        return state.user.email;
+    GET_user(state) {
+        return state.user;
     },
     GET_accessToken(state) {
         return state.accessToken;
@@ -77,7 +77,7 @@ const actions = {
                 refresh: state.refreshToken
             })
             .then(response => {
-                console.log("New Refresh Token");
+                // console.log("New Refresh Token");
                 commit(types.REFRESH, response.data.access);
             })
             .catch(err => {

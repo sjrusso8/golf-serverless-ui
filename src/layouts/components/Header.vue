@@ -1,8 +1,6 @@
 <template>
     <header class="flex items-center justify-between bg-white">
-      <div class="border-none ml-6 text-md bg-gray-300">
-        <input class="p-2 text-md w-auto" placeholder="Search..." />
-      </div>
+      <SearchBar />
       <div 
       @click="dropdownOpen = !dropdownOpen"
 
@@ -43,8 +41,12 @@
 
 <script>
 import { ref } from "vue";
+import SearchBar from "./SearchBar.vue";
 
 export default {
+  components : {
+    SearchBar
+  },
   setup() {
     let dropdownOpen = ref(false);
 

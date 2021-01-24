@@ -26,12 +26,10 @@
 </template>
 
 <script>
-// import * as types from "@/store/modules/auth/mutation-types";
+import * as types from "@/store/modules/auth/mutation-types";
 export default {
-  // mounted() {
-  //   // `this` works in mounted mode.
-  //   this.$store.commit(types.LOGOUT);
-  //   // Might be putting redirect into block of methods.
-  // },
+  mounted() {
+    this.$store.commit(types.LOGOUT);
+  },
 };
 </script>

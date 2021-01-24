@@ -12,7 +12,7 @@
             <router-link 
             v-for="course in courses" 
             :key="course.id" 
-            :to="{ name: 'Course Details', params: { id: course.id, course: course.name_url, city: course.city_url}}" 
+            :to="{ name: 'Course Details', params: { id: course.id, name_url: course.name_url, city_url: course.city_url}}" 
             class="w-1/6 mb-2 rounded-lg shadow-sm overflow-hidden bg-white mr-4 hover:shadow-md">
                 <h2 class="pl-4 pr-4 pt-2 text-lx font-bold tracking-wide">{{ course.name }}</h2>
                 <!-- <p class="pl-4 pt-1 text-sm text-gray-400">Private</p> -->
@@ -53,7 +53,6 @@ export default {
                     config
                     )
                 .then(response => {
-                    console.log(response.data)
                     this.courses = response.data.results
                     }
                 )

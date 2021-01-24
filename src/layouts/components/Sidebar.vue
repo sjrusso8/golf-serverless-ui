@@ -71,7 +71,6 @@ export default {
   },
   methods: {
     getUserDetails() {
-      // console.log(this.GET_userDetails)
       this.user = this.GET_userDetails
     }
   },

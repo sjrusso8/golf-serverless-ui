@@ -28,8 +28,8 @@ import axios from 'axios';
 export default {
     props: [
         "id",
-        "course",
-        "city"
+        "name_url",
+        "city_url"
     ],
     data() {
         return {
@@ -47,11 +47,10 @@ export default {
 
             return axios
                 .get(
-                    process.env.VUE_APP_API_BASE + `coursedetails/${this.id}/${this.course}/${this.city}/`,
+                    process.env.VUE_APP_API_BASE + `coursedetails/${this.id}/${this.name_url}/${this.city_url}/`,
                     config
                     )
                 .then(response => {
-                    console.log(response.data)
                     this.courseData = response.data
                     }
                 )

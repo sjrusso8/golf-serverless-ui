@@ -138,7 +138,8 @@ export default {
                 bio: "",
                 hometown: "",
                 following: ""
-            }
+            },
+            userToken: {}
         }
     },
     methods: {
@@ -150,6 +151,9 @@ export default {
             this.user.hometown = user.hometown
             this.user.following = user.following
         },
+        setUserID() {
+            this.userToken = this.GET_user
+        },
         async userDetails() {
 
         const config = {
@@ -160,11 +164,11 @@ export default {
 
         return axios
             .get(
-                process.env.VUE_APP_API_BASE + "profiles",
+                process.env.VUE_APP_API_BASE + "profiles/" + this.userToken.user_id,
                 config
                 )
             .then(response => {
-                this.normalizeUser(response.data.results[0])
+                this.normalizeUser(response.data)
                 this.$store.dispatch('getUserDetails', this.user)
                 }
             )
@@ -175,10 +179,12 @@ export default {
     },
     computed: {
         ...mapGetters([
+            'GET_user',
             'GET_accessToken',
         ])
     },
     mounted() {
+        this.setUserID(),
         this.userDetails()
     }
 }
