@@ -17,15 +17,20 @@
         <div class="bg-white w-full p-4 mt-2">
             <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Scorecard</h3>
         </div>
-        <p>{{ courseData.tees }}</p>
-        <p>{{ courseData.gps_holes }}</p>
+        <Scorecard :tees="courseData.tees" />
+        <!-- <p>{{ courseData.tees }}</p>
+        <p>{{ courseData.gps_holes }}</p> -->
     </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
+import Scorecard from "./components/Scorecard.vue"
 
 export default {
+    components: {
+        Scorecard
+    },
     props: [
         "id",
         "name_url",
