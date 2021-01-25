@@ -11,7 +11,7 @@
             <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Statistics</h3>
         </div>
         <div class="flex flex-wrap -mx-1 overflow-hidden p-4">
-            <div class="md:w-1/2 h-18 rounded-l-lg border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
+            <div class="w-full md:w-1/2 h-18 mb-1 rounded-md md:rounded-l-lg md:border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
                 <div class="p-2 text-center">
                     <div class="pr-2">
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Farthest Distance</p>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2 h-18 border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
+            <div class="w-full md:w-1/2 h-18  mb-1 rounded-md md:border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
                 <div class="p-2 text-center">
                     <div class="pr-2">
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Fastest Club Head Speed</p>

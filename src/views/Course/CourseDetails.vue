@@ -4,14 +4,14 @@
         <div class="h-32">
             <div class="bg-cover bg-hero-pattern w-full h-full"></div>
         </div>
-        <div class="flex flex-row justify-between bg-white w-full p-4">
-            <div>
-                <h2 class="text-xl font-bold tracking-wide">{{ courseData.name }}</h2>
-                <p class="capitalize ">{{ courseData.address }}</p>
+        <div class="flex flex-row justify-between items-center bg-white w-full p-4">
+            <div class="w-32 md:w-full">
+                <h2 class="text-md md:text-xl font-bold tracking-wide">{{ courseData.name }}</h2>
+                <p class="text-xs md:text-md capitalize pt-1 ">{{ courseData.address }}</p>
             </div>
-            <div>
-                <p class="text-sm text-blue-800">{{ courseData.website }}</p>
-                <p class="text-sm">{{ courseData.phone }}</p>
+            <div class="">
+                <p class="text-xs md:text-sm text-blue-800">{{ courseData.website }}</p>
+                <p class="text-xs md:text-sm ">{{ courseData.phone }}</p>
             </div>
         </div>
         <div class="bg-white w-full p-4 mt-2">
