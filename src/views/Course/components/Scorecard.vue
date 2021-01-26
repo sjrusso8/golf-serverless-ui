@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="flex flex-wrap">
+        <section class="flex flex-wrap p-2">
             <TeesSlopeRating 
                 v-for="tee in tees" 
                 :key="tee.tees"
@@ -8,15 +8,15 @@
                 :rating="tee.rating"
                 :slope="tee.slope"/>
         </section>
-        <div>
-            <table>
+        <div class="p-4 overflow-x-auto rounded-md overflow-y-auto relative">
+            <table class="table-auto w-full whitespace-no-wrap bg-white relative shadow rounded-md">
                 <HoleIndexPar :hip="holeindexpar" />
                 
                 <TeeDistance
-                v-for="tee in teedistances"
-                    :key="tee.tees"
-                    :tee="tee.tees"
-                    :tee_holes="tee.tee_holes"
+                    v-for="tee in teedistances"
+                        :key="tee.tees"
+                        :tee="tee.tees"
+                        :tee_holes="tee.tee_holes"
                 />
             </table>
         </div>

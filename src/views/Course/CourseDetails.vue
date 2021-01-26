@@ -18,8 +18,6 @@
             <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Scorecard</h3>
         </div>
         <Scorecard :tees="courseData.tees" :holeindexpar="holeIndexPar" :teedistances="teeDistances"/>
-        <!-- <p>{{ courseData.tees }}</p>
-        <p>{{ courseData.gps_holes }}</p> -->
     </div>
 </template>
 <script>

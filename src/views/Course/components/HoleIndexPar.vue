@@ -1,21 +1,21 @@
 <template>
-  <tr class="text-center">
-    <td class="text-left">
-      <strong>Hole</strong>
+  <tr class=" border-solid border-gray-200">
+    <td class="text-center sticky border-b border-r border-black py-2">
+      <span class="font-bold text-md tracking-wider uppercase">Hole</span>
     </td>
-    <td v-for="value in hip" :key="value.hole">{{ value.hole }}</td>
+    <td class="text-center sticky border-b border-black font-bold" v-for="value in hip" :key="value.hole">{{ value.hole }}</td>
   </tr>
-  <tr class="text-center">
-    <td class="text-left">
-      <strong>Index</strong>
+  <tr class="">
+    <td class="text-center sticky border-b border-r border-black py-2">
+      <span class="font-bold text-md tracking-wider uppercase">Index</span>
     </td>
-    <td v-for="value in hip" :key="value.hole">{{ value.index }}</td>
+    <td class="text-center sticky border-b border-black" v-for="value in hip" :key="value.hole">{{ value.index }}</td>
   </tr>
-  <tr class="text-center">
-    <td class="text-left">
-      <strong>Par</strong>
+  <tr class="">
+    <td class="text-center sticky border-b-2 border-r border-black py-2">
+      <span class="font-bold text-md tracking-wider uppercase">Par</span>
     </td>
-    <td v-for="value in hip" :key="value.hole">{{ value.par }}</td>
+    <td class="text-center sticky border-b-2 border-black" v-for="value in hip" :key="value.hole">{{ value.par }}</td>
   </tr>
 </template>
 
