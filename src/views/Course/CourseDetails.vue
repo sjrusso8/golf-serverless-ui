@@ -17,7 +17,7 @@
         <div class="bg-white w-full p-4 mt-2">
             <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Scorecard</h3>
         </div>
-        <Scorecard :tees="courseData.tees" />
+        <Scorecard :tees="courseData.tees" :holeindexpar="holeIndexPar" :teedistances="teeDistances"/>
         <!-- <p>{{ courseData.tees }}</p>
         <p>{{ courseData.gps_holes }}</p> -->
     </div>
@@ -38,10 +38,12 @@ export default {
     ],
     data() {
         return {
-            courseData: {}
+            courseData: {},
+            holeIndexPar: {},
+            teeDistances: [],
         }
     },
-        methods: {
+    methods: {
         async getCourseDetails() {
 
             const config = {
@@ -57,6 +59,10 @@ export default {
                     )
                 .then(response => {
                     this.courseData = response.data
+                    this.holeIndexPar = this.courseData.tees[0].tee_holes.slice().reverse()
+                    response.data.tees.forEach(element => {
+                            this.teeDistances.push({tees:element.tees, tee_holes: element.tee_holes.slice().reverse()})                      
+                        });
                     }
                 )
                 .catch(e => {
