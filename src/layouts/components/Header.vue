@@ -14,18 +14,13 @@
         v-show="dropdownOpen"
         class="absolute top-10 -right-2 w-40 h-auto rounded border-md border-black shadow-md bg-white">
           <ul class="m-0 p-0 list-none cursor-pointer">
-            <li class="flex flex-row items-center p-2 hover:bg-gray-200">
+            <router-link
+          :to="{ name: 'Profile' }" class="flex flex-row items-center p-2 hover:bg-gray-200">
               <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
               <span class="ml-2">My Profile</span>
-            </li>
-            <li class="flex flex-row  items-center p-2  hover:bg-gray-200">
-              <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-              </svg>
-              <span class="ml-2">My Account</span>
-            </li>
+            </router-link>
             <router-link
           :to="{ name: 'Logout' }" class="flex flex-row items-center p-2  hover:bg-gray-200">
               <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black">

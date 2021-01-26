@@ -26,6 +26,12 @@ const routes = [
         meta: { title: "Dashboard", icon: "dashboard", affix: true }
       },
       {
+        path: "profile",
+        component: () => import("@/views/Profile/Profile.vue"),
+        name: "Profile",
+        meta: { title: "Profile", icon: "profile", affix: true }
+      },
+      {
         path: "courses",
         component: () => import("@/views/Course/Courses.vue"),
         name: "Courses",
