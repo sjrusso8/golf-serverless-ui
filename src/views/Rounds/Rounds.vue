@@ -4,7 +4,7 @@
         <div class="h-32">
             <div class="bg-cover bg-hero-pattern w-full h-full"></div>
         </div>
-        <div class="bg-white w-full p-4">
+        <div class="bg-white w-full flex justify-between p-4">
             <h2 class="text-xl font-bold tracking-wide">Rounds</h2>
         </div>
         <div class="p-4 overflow-x-auto rounded-lg overflow-y-auto relative">

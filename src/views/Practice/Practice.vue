@@ -4,10 +4,14 @@
         <div class="h-32">
             <div class="bg-cover bg-hero-pattern w-full h-full"></div>
         </div>
-        <div class="bg-white w-full p-4">
+        <div class="bg-white w-full  flex justify-between  p-4">
             <h2 class="text-xl font-bold tracking-wide">Practice</h2>
+            <button
+                class="inline-block px-6 py-1 text-xs font-medium leading-6 text-center text-white uppercase transition bg-green-500 rounded shadow ripple hover:shadow-lg hover:bg-green-600 focus:outline-none">
+                Add Practice Data
+            </button>
         </div>
-        <div class="bg-white w-full p-4 mt-2">
+        <div class="bg-white w-full flex justify-between p-4 mt-2">
             <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Statistics</h3>
         </div>
         <div class="flex flex-wrap -mx-1 overflow-hidden p-4">

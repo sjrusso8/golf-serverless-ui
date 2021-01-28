@@ -13,13 +13,10 @@
             v-for="course in courses" 
             :key="course.id" 
             :to="{ name: 'Course Details', params: { id: course.id, name_url: course.name_url, city_url: course.city_url}}" 
-            class="w-full sm:w-1/4 lg:w-1/6 mb-2 h-16rounded-lg shadow-sm overflow-hidden bg-white mr-4 hover:shadow-md">
+            class="w-full sm:w-1/4 lg:w-1/6 mb-2 rounded shadow-sm overflow-hidden bg-white mr-4 hover:shadow-md">
                 <h2 class="pl-4 pr-4 pt-2 text-lx font-bold tracking-wide">{{ course.name }}</h2>
-                <!-- <p class="pl-4 pt-1 text-sm text-gray-400">Private</p> -->
                 <div class="flex flex-col p-4">
                     <p class="text-sm font-semibold text-gray-700 uppercase">{{ course.city }}, {{ course.state }}</p>
-                    <!-- <p class="text-sm font-semibold text-gray-400">4300 Piper Glen Dr</p>
-                    <p class="text-sm font-semibold text-gray-400">18 holes</p> -->
                 </div>
             </router-link>
     </div>
