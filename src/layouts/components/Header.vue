@@ -3,6 +3,7 @@
       <SearchBar />
       <div class="flex content-center">
             <button
+                @click="toggleModal"
                 class="px-6 h-6 m-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-green-500 rounded shadow ripple hover:shadow-lg hover:bg-green-600 focus:outline-none">
                 Post a Round
             </button>
@@ -38,20 +39,30 @@
         </div>
       </div>
     </header>
+    <BaseModel 
+    :open="open"
+    title="Post a Score"
+    v-on:close-modal="toggleModal"/>
 </template>
 
 <script>
 import { ref } from "vue";
 import SearchBar from "./SearchBar.vue";
+import BaseModel from "@/components/model/BaseModal.vue"
 
 export default {
   components : {
-    SearchBar
+    SearchBar,
+    BaseModel
   },
   setup() {
     let dropdownOpen = ref(false);
+    let open = ref(false);
+    const toggleModal = () => {
+      open.value = !open.value
+    }
 
-    return { dropdownOpen }
+    return { dropdownOpen, open, toggleModal }
   }
 }
 </script>

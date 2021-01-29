@@ -63,7 +63,9 @@ const routes = [
         meta: { title: "Round Details", icon: "round", affix: true }
       },
     ]
-  }
+  },
+  { path: '/:pathMatch(.*)*', 
+  component: () => import("@/views/Error.vue") },
 ]
 
 const router = createRouter({

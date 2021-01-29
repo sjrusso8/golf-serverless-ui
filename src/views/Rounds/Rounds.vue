@@ -19,22 +19,22 @@
 					</tr>
 				</thead>
 				<tbody>
-                    <tr class="py-2">
+                    <tr class="py-2" v-for="round in roundData" :key="round.date">
                         <td class="border-solid border-t border-gray-200 py-2">
-                            <router-link :to="{name: 'Round Details'}" class="text-blue-700 font-bold px-6 flex items-center">Course Name</router-link >
-                            <span class="text-gray-400 px-6 text-sm">Date</span>
+                            <router-link :to="{name: 'Round Details'}" class="text-blue-700 font-bold px-6 flex items-center">TPC Riversbend</router-link >
+                            <span class="text-gray-400 px-6 text-sm">{{ round.date }}</span>
                         </td>
                         <td class="text-center border-solid border-t border-gray-200">
-                            <span class="text-gray-700 px-6 py-3">80</span>
+                            <span class="text-gray-700 px-6 py-3">{{ round.score_total }}</span>
                         </td>
                         <td class="text-center border-solid border-t border-gray-200">
-                            <span class="text-gray-700 px-6 py-3">32</span>
+                            <span class="text-gray-700 px-6 py-3">{{ round.putts_total }}</span>
                         </td>
                         <td class="text-center border-solid border-t border-gray-200">
-                            <span class="text-gray-700 px-6 py-3">50%</span>
+                            <span class="text-gray-700 px-6 py-3">{{ round.approach_gir_percent * 100 }}%</span>
                         </td>
                         <td class="text-center border-solid border-t border-gray-200">
-                            <span class="text-gray-700 px-6 py-3">50%</span>
+                            <span class="text-gray-700 px-6 py-3">{{ Math.round(round.fairways_hit_percent * 100) }}%</span>
                         </td>
                     </tr>
 				</tbody>
@@ -42,3 +42,52 @@
 		</div>
     </div>
 </template>
+<script>
+import { mapGetters } from "vuex";
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            roundData: [],
+            userToken: {}
+        }
+    },
+    methods: {
+        setUserID() {
+            this.userToken = this.GET_user
+        },
+        async userRound() {
+
+        const config = {
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.GET_accessToken}` }
+            };       
+
+        return axios
+            .get(
+                process.env.VUE_APP_API_BASE + "users_rounds/" + this.userToken.user_id,
+                config
+                )
+            .then(response => {
+                this.roundData = response.data.user_rounds
+                }
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'GET_user',
+            'GET_accessToken',
+        ])
+    },
+    mounted() {
+        this.setUserID(),
+        this.userRound()
+    }
+}
+</script>

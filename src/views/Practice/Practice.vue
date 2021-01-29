@@ -7,6 +7,7 @@
         <div class="bg-white w-full  flex justify-between  p-4">
             <h2 class="text-xl font-bold tracking-wide">Practice</h2>
             <button
+                @click="toggleModal"
                 class="inline-block px-6 py-1 text-xs font-medium leading-6 text-center text-white uppercase transition bg-green-500 rounded shadow ripple hover:shadow-lg hover:bg-green-600 focus:outline-none">
                 Add Practice Data
             </button>
@@ -89,12 +90,21 @@
 			</table>
 		</div> 
     </div>
+    <BaseModel 
+    :open="open"
+    title="Add Practice Data"
+    v-on:close-modal="toggleModal"/>
 </template>
+
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
+import BaseModel from "@/components/model/BaseModal.vue"
 
 export default {
+    components: {
+        BaseModel
+    },
     data() {
         return {
             practiceData: [],
@@ -103,9 +113,13 @@ export default {
                 fastestClubHead: 0,
                 avgSmashFactor: 0,
             },
+            open: false
         }
     },
     methods: {
+        toggleModal() {
+            this.open = !this.open
+        },
         getSummary(){
             this.summaryStats.farthestDistance = Math.max(...this.practiceData.map(data => data.total), 0);
             this.summaryStats.fastestClubHead = Math.max(...this.practiceData.map(data => data.swing_speed), 0);
