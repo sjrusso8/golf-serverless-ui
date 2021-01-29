@@ -13,6 +13,7 @@
           <span class="text-gray-700 text-sm">Email</span>
           <input
             type="email"
+            autocomplete="username"
             class="form-input mt-1 block w-full rounded-md focus:border-indigo-600"
             v-model="credentials.email"
           />
@@ -22,6 +23,7 @@
           <span class="text-gray-700 text-sm">Password</span>
           <input
             type="password"
+            autocomplete="current-password"
             class="form-input mt-1 block w-full rounded-md focus:border-indigo-600"
             v-model="credentials.password"
           />

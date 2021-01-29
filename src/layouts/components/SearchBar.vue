@@ -9,9 +9,9 @@
     <div class="absolute bg-white top-10 ml-1 rounded-md w-full md:w-1/2 max-h-64 overflow-auto">
         <div class="animate-pulse flex flex-col justify-around " v-if="searchTerm && !apiLoaded">
             <div class="flex justify-start align-start border-b-2">
-                <span class="rounded-full font-bold bg-green-400 m-2 w-1/2 h-4"></span>
-                <span class="rounded-full font-bold bg-green-400 m-2 w-1/4 h-4"></span>
-                <span class="rounded-full font-bold bg-green-400 m-2 w-1/4 h-4"></span>
+                <span class="rounded-full bg-green-400 m-2 w-1/2 h-4"></span>
+                <span class="rounded-full bg-green-400 m-2 w-1/4 h-4"></span>
+                <span class="rounded-full bg-green-400 m-2 w-1/4 h-4"></span>
             </div>
         </div>
         <div class="flex flex-col justify-around " v-if="searchTerm && apiLoaded">

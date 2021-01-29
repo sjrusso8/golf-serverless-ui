@@ -19,6 +19,23 @@
 					</tr>
 				</thead>
 				<tbody>
+                    <tr v-if="!apiLoaded">
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-4"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-4"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-4"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-4"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-4"></div>
+                        </td>
+                    </tr>
                     <tr class="py-2" v-for="round in roundData" :key="round.date">
                         <td class="border-solid border-t border-gray-200 py-2">
                             <router-link :to="{name: 'Round Details'}" class="text-blue-700 font-bold px-6 flex items-center">TPC Riversbend</router-link >
@@ -50,7 +67,8 @@ export default {
     data() {
         return {
             roundData: [],
-            userToken: {}
+            userToken: {},
+            apiLoaded: false
         }
     },
     methods: {
@@ -72,6 +90,7 @@ export default {
                 )
             .then(response => {
                 this.roundData = response.data.user_rounds
+                this.apiLoaded = !this.apiLoaded
                 }
             )
             .catch(e => {

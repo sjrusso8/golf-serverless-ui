@@ -17,18 +17,20 @@
         </div>
         <div class="flex flex-wrap -mx-1 overflow-hidden p-4">
             <div class="w-full md:w-1/2 h-18 mb-1 rounded-md md:rounded-l-lg md:border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                <div class="p-2 text-center">
+                <div class="flex flex-col items-center p-2 text-center">
                     <div class="pr-2">
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Farthest Distance</p>
-                        <p class="text-lg font-bold text-green-800 dark:text-gray-200"> {{ summaryStats.farthestDistance }}  </p>
+                        <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        <p v-if="apiLoaded" class="text-lg font-bold text-green-800 dark:text-gray-200"> {{ summaryStats.farthestDistance }}  </p>
                     </div>
                 </div>
             </div>
             <div class="w-full md:w-1/2 h-18  mb-1 rounded-md md:border-r-2 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                <div class="p-2 text-center">
+                <div class="flex flex-col items-center p-2 text-center">
                     <div class="pr-2">
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Fastest Club Head Speed</p>
-                        <p class="text-lg font-bold text-green-800 dark:text-gray-200"> {{ summaryStats.fastestClubHead }} </p>
+                        <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        <p v-if="apiLoaded" class="text-lg font-bold text-green-800 dark:text-gray-200"> {{ summaryStats.fastestClubHead }} </p>
                     </div>
                 </div>
             </div>
@@ -51,6 +53,41 @@
 					</tr>
 				</thead>
 				<tbody>
+                    <tr v-if="!apiLoaded">
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                        <td>
+                            <div class="animate-pulse rounded-full bg-green-400 m-4 w-3/4 h-6"></div>
+                        </td>
+                    </tr>
                     <tr v-for="practice in practiceData" :key="practice.id"  class="py-2">
                         <td class="border-solid border-t border-gray-200 py-2">
                             <span class="text-gray-700 px-6 py-3">{{ new Date(practice.created_at).toLocaleDateString("en-US") }}</span>
@@ -113,7 +150,8 @@ export default {
                 fastestClubHead: 0,
                 avgSmashFactor: 0,
             },
-            open: false
+            open: false,
+            apiLoaded: false,
         }
     },
     methods: {
@@ -141,6 +179,7 @@ export default {
             .then(response => {
                 this.practiceData = response.data.results
                 this.getSummary()
+                this.apiLoaded = !this.apiLoaded
                 }
             )
             .catch(e => {

@@ -100,7 +100,82 @@
                     Scoring
                 </div>
             </div>
-
+            {{ shotData }}
         </div> 
     </div>
 </template>
+<script>
+import { mapGetters } from "vuex";
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            roundData: [],
+            shotData: [],
+            headers: {},
+            userToken: {},
+            apiLoaded: false
+        }
+    },
+    methods: {
+        setUserID() {
+            this.userToken = this.GET_user
+        },
+        async userRound() {
+
+        const config = {
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.GET_accessToken}` }
+            };       
+
+        return axios
+            .get(
+                process.env.VUE_APP_API_BASE + "users_rounds/" + this.userToken.user_id,
+                config
+                )
+            .then(response => {
+                this.roundData = response.data.user_rounds
+                this.apiLoaded = !this.apiLoaded
+                }
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        },
+        async userShots() {
+
+        const config = {
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.GET_accessToken}` }
+            };       
+
+        return axios
+            .get(
+                process.env.VUE_APP_API_BASE + "users_shots/" + this.userToken.user_id,
+                config
+                )
+            .then(response => {
+                this.shotData = response.data.user_rounds[0].tees.tee_holes.slice().reverse()
+                }
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'GET_user',
+            'GET_accessToken',
+        ])
+    },
+    mounted() {
+        this.setUserID(),
+        this.userRound(),
+        this.userShots()
+    }
+}
+</script>
