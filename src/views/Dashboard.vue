@@ -11,7 +11,7 @@
                     <!-- Quick Facts -->
                     <div class="flex flex-row justify-between h-16 p-6 md:p-12 text-white">
                         <div class="flex flex-col items-center px-5">
-                            <p class="text-lg md:text-2xl pb-2 font-bold tracking-wide">72</p>
+                            <p class="text-lg md:text-2xl pb-2 font-bold tracking-wide">{{ roundData.score_total }} </p>
                             <div class="flex items-center">
                                 <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -41,11 +41,13 @@
                     <div class="flex ">
                         <div class="text-center pr-2">
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Avg Score</p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 72.5 </p>
+                            <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 h-4"></div>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ roundData.score_total }} </p>
                         </div>
                         <div class="text-center pr-2">
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Avg Putts</p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 28 </p>
+                            <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 h-4"></div>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> {{ roundData.putts_total }} </p>
                         </div>
                     </div>
                 </div>
@@ -56,17 +58,20 @@
                     <div class="flex justify-between">
                         <div class="text-center pr-6">
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">GIR %</p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 30% </p>
+                            <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 h-4"></div>
+                            <p v-if="apiLoaded" class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ Math.round(roundData.approach_gir_percent * 100) }}% </p>
                         </div>
                         <div class="text-center pr-2">
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">FIR %</p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> 30% </p>
+                            <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 h-4"></div>
+                            <p v-if="apiLoaded" class="text-lg font-semibold text-gray-700 dark:text-gray-200">  {{ Math.round(roundData.fairways_hit_percent * 100) }}% </p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="flex-grow mb-2 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800">
                 <h2 class="pl-4 pt-2 text-lx font-bold tracking-wide">Round Bar Chart</h2>
+                <Highcharts ref="highchartsRef" :options="chartOptions" />     
             </div>
         </div>
         <!-- Stat Cards -->
@@ -107,8 +112,7 @@
                     Scoring
                 </div>
             </div>
-
-        </div>       
+        </div>  
     </div>
 </template>
 
@@ -127,7 +131,33 @@ export default {
                 hometown: "",
                 following: ""
             },
-            userToken: {}
+            userToken: {},
+            roundData: {},
+            apiLoaded: false,
+            chartOptions: {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    visible: false
+                },
+                yAxis: {
+                    min: 60,
+                    title: {
+                        text: ''
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    data: [74, 70, 84, 74]
+
+                }]
+            }
         }
     },
     methods: {
@@ -163,7 +193,31 @@ export default {
             .catch(e => {
                 console.log(e);
             });
-        }
+        },
+        async userRound() {
+
+        const config = {
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.GET_accessToken}` }
+            };       
+
+        return axios
+            .get(
+                process.env.VUE_APP_API_BASE + "users_rounds/" + this.userToken.user_id,
+                config
+                )
+            .then(response => {
+                this.roundData = response.data.user_rounds[0]
+                console.log(this.roundData)
+                this.apiLoaded = !this.apiLoaded
+                }
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        },
+
     },
     computed: {
         ...mapGetters([
@@ -173,7 +227,8 @@ export default {
     },
     mounted() {
         this.setUserID(),
-        this.userDetails()
+        this.userDetails(),
+        this.userRound()
     }
 }
 </script>

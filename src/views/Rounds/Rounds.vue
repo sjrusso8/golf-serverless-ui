@@ -90,7 +90,6 @@ export default {
                 )
             .then(response => {
                 this.roundData = response.data.user_rounds
-                console.log(response.data)
                 this.apiLoaded = !this.apiLoaded
                 }
             )
