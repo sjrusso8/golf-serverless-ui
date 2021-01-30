@@ -70,8 +70,8 @@
                 </div>
             </div>
             <div class="flex-grow mb-2 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                <h2 class="pl-4 pt-2 text-lx font-bold tracking-wide">Round Bar Chart</h2>
-                <Highcharts ref="highchartsRef" :options="chartOptions" />     
+                <h2 class="pl-4 pt-2 text-lx font-bold tracking-wide">Historical Round Scores</h2>
+                <Highcharts ref="highchartsRef" :options="roundChart" />     
             </div>
         </div>
         <!-- Stat Cards -->
@@ -79,19 +79,21 @@
 
             <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
                 <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    FIRs
+                 <Highcharts :options="FIRchart" />
                 </div>
             </div>
 
             <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
                 <div class="rounded-lg shadow-xs overflow-hidden bg-white">
                     GIRs
+                    
                 </div>
             </div>
 
             <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
                 <div class="rounded-lg shadow-xs overflow-hidden bg-white">
                     Putting
+                    
                 </div>
             </div>
         
@@ -134,9 +136,10 @@ export default {
             userToken: {},
             roundData: {},
             apiLoaded: false,
-            chartOptions: {
+            roundChart: {
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                    height: 100
                 },
                 title: {
                     text: ''
@@ -145,7 +148,7 @@ export default {
                     visible: false
                 },
                 yAxis: {
-                    min: 60,
+                    min:0,
                     title: {
                         text: ''
                     }
@@ -153,9 +156,63 @@ export default {
                 legend: {
                     enabled: false
                 },
+                series: [
+                    {
+                        type: 'column',
+                        data: [74, 70, 84, 74, 95,81,78,81]
+                    },
+                    {
+                        type: 'line',
+                        data: [74, 70, 84, 74, 95,81,78,81]
+                    },
+                ]
+            },
+            FIRchart: {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Fairway Tendencies',
+                    align: 'center',
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: true,
+                            distance: -50,
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white'
+                            }
+                        },
+                        startAngle: -90,
+                        endAngle: 90,
+                        center: ['50%', '75%'],
+                        size: '125%'
+                    }
+                },
                 series: [{
-                    data: [74, 70, 84, 74]
-
+                    type: 'pie',
+                    name: 'Fairway',
+                    innerSize: '50%',
+                    data: [
+                        // ['Missed Left', this.roundData.fairways_left_percent],
+                        // ['Hit', this.roundData.fairways_hit_percent],
+                        // ['Missed Right', this.roundData.fairways_right_percent],
+                        // ['Missed Long', this.roundData.fairways_long_percent],
+                        // ['Missed Shot', this.roundData.fairways_short_percent],
+                        // ['Skanked', this.roundData.fairways_shank_percent],
+                    ]
                 }]
             }
         }
