@@ -38,8 +38,8 @@
                     </tr>
                     <tr class="py-2" v-for="round in roundData" :key="round.date">
                         <td class="border-solid border-t border-gray-200 py-2">
-                            <router-link :to="{name: 'Round Details'}" class="text-blue-700 font-bold px-6 flex items-center">TPC Riversbend</router-link >
-                            <span class="text-gray-400 px-6 text-sm">{{ round.date }}</span>
+                            <router-link :to="{name: 'Round Details', params: { id: round.course}}" class="text-blue-700 font-bold px-6 flex items-center">TPC Riversbend</router-link >
+                            <span class="text-gray-400 px-6 text-sm">2020/06/01</span>
                         </td>
                         <td class="text-center border-solid border-t border-gray-200">
                             <span class="text-gray-700 px-6 py-3">{{ round.score_total }}</span>
@@ -90,6 +90,7 @@ export default {
                 )
             .then(response => {
                 this.roundData = response.data.user_rounds
+                console.log(response.data)
                 this.apiLoaded = !this.apiLoaded
                 }
             )

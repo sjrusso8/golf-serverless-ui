@@ -14,6 +14,7 @@
           <input
             type="email"
             autocomplete="username"
+            placeholder="joegolfer@golfapi.com"
             class="form-input mt-1 block w-full rounded-md focus:border-indigo-600"
             v-model="credentials.email"
           />
@@ -24,6 +25,7 @@
           <input
             type="password"
             autocomplete="current-password"
+            placeholder="overpar!"
             class="form-input mt-1 block w-full rounded-md focus:border-indigo-600"
             v-model="credentials.password"
           />
@@ -55,7 +57,8 @@
           </button>
         </div>
       </form>
-      <!-- <div v-if="errorMessage">Wrong credentials entered! Please try again</div> -->
+      <div v-if="errorMessage" class="text-red-700 bg-red-100 text-center border-2 border-red-600 rounded mt-2 text-sm">Wrong credentials entered! Please try again</div>
+      <div class="text-sm pt-4">Email: joegolfer@golfapi.com & password: overpar!</div>
     </div>
   </div>
 </template>
@@ -67,8 +70,8 @@ export default {
   data() {
     return {
       credentials: {
-        email: "",
-        password: "",
+        email: "joegolfer@golfapi.com",
+        password: "overpar!",
       },
       errorMessage: false,
     };

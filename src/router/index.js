@@ -57,7 +57,7 @@ const routes = [
         meta: { title: "Rounds", icon: "round", affix: true }
       },
       {
-        path: "round-details",
+        path: "round-details/:id",
         component: () => import("@/views/Rounds/RoundDetails.vue"),
         name: "Round Details",
         meta: { title: "Round Details", icon: "round", affix: true }
