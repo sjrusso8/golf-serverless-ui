@@ -63,47 +63,6 @@
             </div>
         </div>
         <div class="bg-white w-full p-4 mt-2">
-            <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Statistics</h3>
-        </div>
-        <div class="flex flex-wrap -mx-1 overflow-hidden px-4 py-2">
-
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    FIRs
-                </div>
-            </div>
-
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    GIRs
-                </div>
-            </div>
-
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Putting
-                </div>
-            </div>
-        
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Scores by Par
-                </div>
-            </div>
-
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Recovery
-                </div>
-            </div>
-
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Scoring
-                </div>
-            </div>
-        </div> 
-                <div class="bg-white w-full p-4 mt-2">
             <h3 class="text-sm text-gray-600 font-bold tracking-wide uppercase">Detailed Scorecard</h3>
         </div>
         <Shotscorecard :tees="teeData" :holeindexpar="shotData" :shotdata="shotData"/>

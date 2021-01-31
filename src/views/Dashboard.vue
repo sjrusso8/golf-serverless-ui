@@ -38,13 +38,13 @@
             <div class="w-full md:w-1/4 mb-2 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 mr-4">
                 <h2 class="pl-4 pt-2 text-lx font-bold tracking-wide">Round Averages</h2>
                 <div class="p-4 flex flex-row justify-around md:flex-col items-center">
-                    <div class="flex ">
-                        <div class="text-center pr-2">
+                    <div class="flex">
+                        <div class="text-center pr-12">
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Avg Score</p>
                             <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 h-4"></div>
                             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ roundData.score_total }} </p>
                         </div>
-                        <div class="text-center pr-2">
+                        <div class="text-center ">
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Avg Putts</p>
                             <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 h-4"></div>
                             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> {{ roundData.putts_total }} </p>
@@ -56,7 +56,7 @@
                 <h2 class="pl-4 pt-2 text-lx font-bold tracking-wide">Round Percentages</h2>
                 <div class="p-4 flex flex-row justify-around md:flex-col items-center">
                     <div class="flex justify-between">
-                        <div class="text-center pr-6">
+                        <div class="text-center pr-12">
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">GIR %</p>
                             <div v-if="!apiLoaded" class="animate-pulse rounded-full bg-green-400 h-4"></div>
                             <p v-if="apiLoaded" class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ Math.round(roundData.approach_gir_percent * 100) }}% </p>

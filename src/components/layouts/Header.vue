@@ -5,7 +5,7 @@
             <button
                 @click="toggleModal"
                 class="px-6 h-6 m-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-green-500 rounded shadow ripple hover:shadow-lg hover:bg-green-600 focus:outline-none">
-                Post a Round
+                Post Score
             </button>
         <div 
         @click="dropdownOpen = !dropdownOpen"
