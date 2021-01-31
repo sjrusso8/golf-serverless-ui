@@ -64,13 +64,28 @@ const routes = [
       },
     ]
   },
-  { path: '/:pathMatch(.*)*', 
-  component: () => import("@/views/Error.vue") },
+  { 
+    path: '/:pathMatch(.*)*', 
+    component: () => import("@/views/Error.vue") },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/logout'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = JSON.parse(localStorage.getItem('vuex')).auth.accessToken;
+
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (authRequired && !loggedIn) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 export default router
