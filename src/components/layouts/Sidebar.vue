@@ -15,7 +15,7 @@
           <router-link :to="{name: 'Dashboard'}" class="text-md font-bold text-white mx-2">Golf<span class="font-normal">Caddie</span></router-link>
       </div>
       <div class="flex items-center h-20 bg-hero-blue-300">
-        <div class="w-12 h-12 m-2 rounded-full ring-2 ring-white" style="background-image: url(https://picsum.photos/100/100)"></div>
+        <div class="w-12 h-12 bg-cover m-2 rounded-full ring-2 ring-white" style="background-image: url('img/headshot_golfer.png');"></div>
         <div class="text-md text-white tracking-wide text-sm font-bold ">{{ user.first_name }} {{ user.last_name }}</div>
       </div>
       <div class="">

@@ -127,7 +127,7 @@
 			</table>
 		</div> 
     </div>
-    <BaseModel 
+    <BaseModal 
     :open="open"
     title="Add Practice Data"
     v-on:close-modal="toggleModal"/>
@@ -136,11 +136,11 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
-import BaseModel from "@/components/model/BaseModal.vue"
+import BaseModal from "@/components/modal/BaseModal.vue"
 
 export default {
     components: {
-        BaseModel
+        BaseModal
     },
     data() {
         return {

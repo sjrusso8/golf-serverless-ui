@@ -112,7 +112,7 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
-import Shotscorecard from "./components/ShotScorecard.vue"
+import Shotscorecard from "@/components/scorecard/ShotScorecard.vue"
 
 export default {
     components: {

@@ -39,7 +39,7 @@
         </div>
       </div>
     </header>
-    <BaseModel 
+    <BaseModal 
     :open="open"
     title="Post a Score"
     v-on:close-modal="toggleModal"/>
@@ -48,12 +48,12 @@
 <script>
 import { ref } from "vue";
 import SearchBar from "./SearchBar.vue";
-import BaseModel from "@/components/model/BaseModal.vue"
+import BaseModal from "@/components/modal/BaseModal.vue"
 
 export default {
   components : {
     SearchBar,
-    BaseModel
+    BaseModal
   },
   setup() {
     let dropdownOpen = ref(false);

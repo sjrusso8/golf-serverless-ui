@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import TeesSlopeRating from "./TeesSlopeRating.vue";
-import HoleIndexPar from "./HoleIndexPar.vue";
-import TeeDistance from "./TeeDistance.vue";
+import TeesSlopeRating from "./SlopeRatingDetails/TeesSlopeRating.vue";
+import HoleIndexPar from "./HoleIndexParDetails/HoleIndexPar.vue";
+import TeeDistance from "./TeeDetails/TeeDistance.vue";
 
 export default {
     components: {

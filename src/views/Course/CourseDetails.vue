@@ -26,7 +26,7 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
-import Scorecard from "./components/Scorecard.vue"
+import Scorecard from "@/components/scorecard/Scorecard.vue"
 
 export default {
     components: {
