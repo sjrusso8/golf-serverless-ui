@@ -69,48 +69,40 @@
                     </div>
                 </div>
             </div>
-            <div class="flex-grow mb-2 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                <h2 class="pl-4 pt-2 text-lx font-bold tracking-wide">Historical Round Scores</h2>    
+            <div class="flex-grow mb-2 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800"> 
+                <BarChart />  
             </div>
         </div>
         <!-- Stat Cards -->
-        <div class="flex flex-wrap -mx-1 overflow-hidden px-4">
+        <div class="flex flex-wrap -mx-1 px-4">
 
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    FIRs
+            <div class="my-1 px-1 w-full md:w-1/3">
+                <div class="rounded-lg shadow-xs h-auto bg-white">
+                    <FIRChart />
                 </div>
             </div>
 
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    GIRs
-                    
+            <div class="my-1 px-1 w-full md:w-1/3">
+                <div class="rounded-lg shadow-xs h-auto bg-white">
+                    <GIRChart />
                 </div>
             </div>
 
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Putting
-                    
+            <div class="my-1 px-1 w-full md:w-1/3">
+                <div class="rounded-lg shadow-xs h-auto bg-white">
+                    <PuttChart />
                 </div>
             </div>
         
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Scores by Par
+            <div class="my-1 px-1 w-full md:w-1/3">
+                <div class="rounded-lg shadow-xs bg-white">
+                    <ScoreChart />
                 </div>
             </div>
 
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
+            <div class="my-1 px-1 w-full overflow-hidden md:w-1/2">
                 <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Recovery
-                </div>
-            </div>
-
-            <div class="my-1 px-1 w-full overflow-hidden md:w-1/3">
-                <div class="rounded-lg shadow-xs overflow-hidden bg-white">
-                    Scoring
+                    <ScoringBarChart />
                 </div>
             </div>
         </div>  
@@ -120,8 +112,22 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
+import BarChart from "@/components/charts/BarChart.vue";
+import FIRChart from "@/components/charts/FIRChart.vue";
+import GIRChart from "@/components/charts/GIRChart.vue";
+import PuttChart from "@/components/charts/PuttChart.vue";
+import ScoreChart from "@/components/charts/ScoreBarChart.vue";
+import ScoringBarChart from "@/components/charts/ScoringBarChart.vue";
 
 export default {
+    components: {
+        BarChart,
+        FIRChart,
+        GIRChart,
+        PuttChart,
+        ScoreChart,
+        ScoringBarChart
+    },
     data() {
         return {
             user: {
@@ -186,7 +192,7 @@ export default {
                 )
             .then(response => {
                 this.roundData = response.data.user_rounds[0]
-                // console.log(this.roundData)
+                console.log(this.roundData)
                 this.apiLoaded = !this.apiLoaded
                 }
             )
@@ -202,7 +208,7 @@ export default {
             'GET_accessToken',
         ])
     },
-    mounted() {
+    beforeMount() {
         this.setUserID(),
         this.userDetails(),
         this.userRound()
