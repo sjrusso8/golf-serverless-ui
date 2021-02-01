@@ -47,8 +47,8 @@
 
 <script>
 import { ref } from "vue";
-import SearchBar from "./SearchBar.vue";
-import BaseModal from "@/components/modal/BaseModal.vue"
+import SearchBar from "./SearchBar";
+import BaseModal from "@/components/modal/BaseModal"
 
 export default {
   components : {

@@ -112,12 +112,12 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
-import BarChart from "@/components/charts/BarChart.vue";
-import FIRChart from "@/components/charts/FIRChart.vue";
-import GIRChart from "@/components/charts/GIRChart.vue";
-import PuttChart from "@/components/charts/PuttChart.vue";
-import ScoreChart from "@/components/charts/ScoreBarChart.vue";
-import ScoringBarChart from "@/components/charts/ScoringBarChart.vue";
+import BarChart from "@/components/charts/BarChart";
+import FIRChart from "@/components/charts/FIRChart";
+import GIRChart from "@/components/charts/GIRChart";
+import PuttChart from "@/components/charts/PuttChart";
+import ScoreChart from "@/components/charts/ScoreBarChart";
+import ScoringBarChart from "@/components/charts/ScoringBarChart";
 
 export default {
     components: {

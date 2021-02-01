@@ -15,10 +15,11 @@
 </template>
 
 <script>
-import Header from "@/components/layouts/Header.vue";
-import Sidebar from "@/components/layouts/Sidebar.vue";
-import MainApp from "@/components/layouts/MainApp.vue";
-import Footer from "@/components/layouts/Footer.vue";
+import Header from "@/components/layouts/Header";
+import Sidebar from "@/components/layouts/Sidebar";
+import MainApp from "@/components/layouts/MainApp";
+import Footer from "@/components/layouts/Footer";
+
 export default {
   components: {
     Header,

@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
+    "gh-pages-deploy": "node scripts/gh-pages-deploy.js",
+    "deploy": "aws --region us-east-2 --profile sjrusso8-nonroot s3 sync ./dist s3://golf.stevenjrusso.com --delete"
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",

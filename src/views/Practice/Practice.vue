@@ -136,7 +136,7 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from 'axios';
-import BaseModal from "@/components/modal/BaseModal.vue"
+import BaseModal from "@/components/modal/BaseModal"
 
 export default {
     components: {
