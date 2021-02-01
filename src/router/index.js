@@ -1,19 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from "@/views/Login";
+import ErrorPage from "@/views/Error";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
 const routes = [
-  {
-    path: "/login",
-    name: "Login",
-    component: Login
-  },
-  {
-    path: "/logout",
-    name: "Logout",
-    component: () =>
-      import(/* webpackChunkName: "logout" */ "@/views/Logout")
-  },
   {
     path: "/",
     redirect: { name: 'Dashboard' },
@@ -64,14 +54,21 @@ const routes = [
       },
     ]
   },
-  { 
-    path: '/:pathMatch(.*)*', 
-    component: () => import("@/views/Error") 
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
   },
   {
-    path: "/:catchAll(.*)",
-    name: 'catchAll',
-    component: Login
+    path: "/logout",
+    name: "Logout",
+    component: () =>
+      import(/* webpackChunkName: "logout" */ "@/views/Logout")
+  },
+  {
+    path: '/:pathMatch(.*)*"',
+    name: 'ErrorPage',
+    component: ErrorPage,
   },
 ]
 
@@ -80,18 +77,18 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/logout'];
-  const authRequired = !publicPages.includes(to.path);
-  const loggedIn = JSON.parse(localStorage.getItem('vuex')).auth.accessToken;
+// router.beforeEach((to, from, next) => {
+//   const publicPages = ['/login', '/logout',];
+//   const authRequired = !publicPages.includes(to.path);
+//   const loggedIn = JSON.parse(localStorage.getItem('vuex')).auth.accessToken;
 
-  // trying to access a restricted page + not logged in
-  // redirect to login page
-  if (authRequired && !loggedIn) {
-    next('/login');
-  } else {
-    next();
-  }
-});
+//   // trying to access a restricted page + not logged in
+//   // redirect to login page
+//   if (authRequired && !loggedIn) {
+//     next('/login');
+//   } else {
+//     next();
+//   }
+// });
 
 export default router
