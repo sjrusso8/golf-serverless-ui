@@ -6,8 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "gh-pages-deploy": "node scripts/gh-pages-deploy.js",
-    "deploy": "aws --region us-east-2 --profile sjrusso8-nonroot s3 sync ./dist s3://golf.stevenjrusso.com --delete"
+    "deploy": "vue-cli-service s3-deploy",
+    "s3-deploy": "aws --region us-east-2 --profile sjrusso8-nonroot s3 sync ./dist s3://golf.stevenjrusso.com --delete",
+    "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
@@ -34,8 +35,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "execa": "latest",
     "vue-cli-plugin-s3-deploy": "^4.0.0-rc4",
-    "vue-cli-plugin-tailwind": "^2.0.5",
-    "execa": "latest"
+    "vue-cli-plugin-tailwind": "^2.0.5"
   }
 }

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Login from "@/views/Login";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
@@ -66,11 +66,17 @@ const routes = [
   },
   { 
     path: '/:pathMatch(.*)*', 
-    component: () => import("@/views/Error") },
+    component: () => import("@/views/Error") 
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: 'catchAll',
+    component: Login
+  },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 
